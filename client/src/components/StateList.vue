@@ -1,4 +1,7 @@
 <template>
+    <div>
+        <state-summary v-bind:states="states"></state-summary>
+    </div>
     <div class="state-list-container">
         <div class="state-container" v-for="state in states" v-bind:key="state.name">
             <state-detail 
@@ -11,10 +14,12 @@
 
 <script>
 import StateDetail from '@/components/StateDetail.vue'
+import StateSummary from '@/components/StateSummary.vue'
 
 export default {
     components: {
-        StateDetail
+        StateDetail,
+        StateSummary
     },
     name: 'StateList',
     data() {
@@ -30,10 +35,18 @@ export default {
             this.$stateService.getAllStates().then( states => {
                 this.states = states
             })
+            .catch( err => {
+                alert('Sorry can\'t fetch state list')
+                console.error(err)
+            })
         },
         updateVisited(stateName, visited) {
             this.$stateService.setVisited(stateName, visited).then( response => {
                 this.fetchAllStates()
+            })
+            .catch( err => {
+                alert('Sorry can\'t update state')
+                console.error(err)
             })
         }
     }
