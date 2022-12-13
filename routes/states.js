@@ -43,4 +43,17 @@ router.patch('/states/:name', function(req, res, next) {
         .catch( err => next(err) )
 })
 
+// gets state names of visited states
+router.get('/state/:visited', function(req, res, visited) {
+    let visitedTrue = req.params.visited
+    States.findAll( {where: {visited: visitedTrue}})
+        .then( states => {
+            if (states.visited == true) {
+                return res.json(states.name)
+            } else {
+                return res.status(404).send('No states visited')
+            }
+        })
+})
+
 module.exports = router

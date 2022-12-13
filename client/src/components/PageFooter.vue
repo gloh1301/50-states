@@ -9,6 +9,10 @@
             <span class="nav-link">
                 <router-link to="/about">About Page</router-link>
             </span>
+
+            <span class="nav-link">
+                <router-link to="/states-visited">States Visited</router-link>
+            </span>
         
         </div>
 
