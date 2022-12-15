@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="footer">
         <div id="navigation-links">
             
             <span class="nav-link">
@@ -30,6 +30,9 @@ export default {
 </script>
 
 <style scoped>
+#footer {
+    margin-top: 2rem;
+}
 .nav-link {
     margin: 1rem;
 }

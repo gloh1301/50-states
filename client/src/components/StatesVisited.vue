@@ -1,9 +1,8 @@
 <template>
     <div>
         <h2>States Visited</h2>
-        <ul>
-            <li>{{  }}</li>
-        </ul>
+        
+        <p v-for="state in visited">{{ state.name }}</p>
     </div>
 </template>
 
@@ -12,20 +11,17 @@ export default {
     name: 'StatesVisited',
     data () {
         return {
-            visited: this.state.visited
+            visited: []
         }
     },
     mounted() {
         // this.state.visited = this.$route.params.visited
-        this.visitedStatus()
+        this.visitedStates()
     },
     methods: {
-        visitedStatus() {
-            this.$stateService.getVisitedStatus(this.state.visited).then( state => {
-                this.state = state
-                if (state.visted == true) {
-                    return state.name
-                }
+        visitedStates() {
+            this.$stateService.getVisitedStates().then( states => {
+                this.visited = states
             })
         }
     }

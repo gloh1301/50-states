@@ -42,7 +42,7 @@ export default {
                 this.dataReady = true
             }).catch( err => {
                 if ( err.response && err.response.status === 404 ) {
-                    this.state.name = '?'
+                    this.$router.push({ name: 'NotFound' })
                 } else {
                     alert('Sorry, error fetching data about this state') // message for user
                     console.error(err) // for developer to see

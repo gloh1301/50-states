@@ -44,15 +44,10 @@ router.patch('/states/:name', function(req, res, next) {
 })
 
 // gets state names of visited states
-router.get('/state/:visited', function(req, res, visited) {
-    let visitedTrue = req.params.visited
-    States.findAll( {where: {visited: visitedTrue}})
+router.get('/states-visited', function(req, res, next) {
+    States.findAll( {where: {visited: true}})
         .then( states => {
-            if (states.visited == true) {
-                return res.json(states.name)
-            } else {
-                return res.status(404).send('No states visited')
-            }
+            return res.json(states)
         })
 })
 
